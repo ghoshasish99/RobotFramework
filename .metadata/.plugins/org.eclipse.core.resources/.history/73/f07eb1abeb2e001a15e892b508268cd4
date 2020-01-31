@@ -1,0 +1,42 @@
+*** Settings ***
+Library     SeleniumLibrary    
+Variables    ../Locators/Contacts.py
+
+*** Keywords ***
+Go To Contacts Page
+      Open Browser   ${URL}    chrome 
+
+Create a contact
+    [Arguments]    @{EMPTY}
+      Click Button    ${newButton}   
+      Fill up data    @{EMPTY}
+
+Operation is successful
+    [Arguments]    ${EMPTY}
+      Wait Until Page Contains Element    xpath://ul/li[contains(text(),'${EMPTY}')]    
+      Page Should Contain Element    xpath://ul/li[contains(text(),'${EMPTY}')]
+
+Fill up data
+    [Arguments]    @{EMPTY}
+      Input Text    &{Contacts}['name']      @{EMPTY}[0]          
+      Input Text    &{Contacts}['email']      @{EMPTY}[1]
+      Input Text    &{Contacts}['mobile']      @{EMPTY}[2]         
+      Input Text    &{Contacts}['workphone']      @{EMPTY}[3] 
+
+Clear data
+      Clear Element Text    &{ContactDetails}[name]
+      Clear Element Text    &{ContactDetails}[email] 
+      Clear Element Text    &{ContactDetails}[mobile] 
+      Clear Element Text    &{ContactDetails}[workphone]
+
+Select User to be operated
+    [Arguments]    ${EMPTY}
+      Wait Until Element Is Visible    xpath://ul/li[contains(text(),'${EMPTY}')]    
+      Click Element    xpath://ul/li[contains(text(),'${EMPTY}')]
+
+Update a contact
+    [Arguments]    @{EMPTY}
+     # 
+      Clear data    
+      Fill up data    @{EMPTY}
+      Click Button    &{ContactDetails}[update]

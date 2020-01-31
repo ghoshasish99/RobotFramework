@@ -1,0 +1,22 @@
+*** Settings ***
+Library     SeleniumLibrary    
+
+*** Variables ***
+&{ContactDetails}    name=css:input[name='contact-name']    email=css:input[name='contact-email']    mobile=css:input[name='contact-phone-mobile']    workphone=css:input[name='contact-phone-work']    
+
+*** Keywords ***
+Go To Contacts Page
+      Open Browser    http://screenplay-contacts.herokuapp.com/    chrome 
+
+Fill up data
+    [Arguments]    @{EMPTY}
+      Input Text    &{ContactDetails}[name]      @{EMPTY}[0]          
+      Input Text    &{ContactDetails}[name]      @{EMPTY}[1]
+      Input Text    &{ContactDetails}[name]      @{EMPTY}[2]         
+      Input Text    &{ContactDetails}[name]      @{EMPTY}[3] 
+
+Clear data
+      Clear Element Text    css:input[name='contact-name']
+      Clear Element Text    css:input[name='contact-email'] 
+      Clear Element Text    css:input[name='contact-phone-mobile'] 
+      Clear Element Text    css:input[name='contact-phone-work'] 

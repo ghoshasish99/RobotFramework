@@ -1,0 +1,11 @@
+from robot.libraries.BuiltIn import BuiltIn
+
+class customlibrary():
+
+		def CreateAContact(self):
+			seleniumlib = BuiltIn().get_library_instance('SeleniumLibrary')
+		   # following line returns WebDriver initiated in robot-framework
+			webdriver = seleniumlib.driver
+			webdriver.get_web_element_by_xpath('/html/body/app-root/div/contact-list/div/div[1]/button').click()
+			
+			

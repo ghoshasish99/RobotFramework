@@ -1,0 +1,47 @@
+*** Settings ***
+Library     SeleniumLibrary 
+
+*** Keywords ***
+Go To Contacts Page
+    Open Browser    http://screenplay-contacts.herokuapp.com/    chrome   
+
+*** Test Cases ***
+Create Contact
+      Open Browser    http://screenplay-contacts.herokuapp.com/    chrome
+      Click Button    xpath://button[text()='New']
+      Input Text      css:input[name='contact-name']    Robot1          
+      Input Text      css:input[name='contact-email']    Robot@user.com
+      Input Text      css:input[name='contact-phone-mobile']    898989898989898          
+      Input Text      css:input[name='contact-phone-work']    202020202020202
+      Click Button    xpath://button[text()='Create'] 
+      Wait Until Page Contains Element    xpath://ul/li[contains(text(),'Robot1')]    
+      Page Should Contain Element    xpath://ul/li[contains(text(),'Robot1')]
+      Close Browser  
+      
+*** Test Cases ***
+Update Contact
+      Open Browser    http://screenplay-contacts.herokuapp.com/    chrome
+      Wait Until Element Is Visible    xpath://ul/li[contains(text(),'Robot1')]    
+      Click Element    xpath://ul/li[contains(text(),'Robot1')]
+      Clear Element Text    css:input[name='contact-name']
+      Input Text      css:input[name='contact-name']    Robot2
+      Clear Element Text    css:input[name='contact-name']          
+      Input Text      css:input[name='contact-email']    Robot@user.com
+      Clear Element Text    css:input[name='contact-name']
+      Input Text      css:input[name='contact-phone-mobile']    98989898989898 
+      Clear Element Text    css:input[name='contact-name']         
+      Input Text      css:input[name='contact-phone-work']    303030303030303
+      Click Button    xpath://button[text()='Update'] 
+      Wait Until Page Contains Element    xpath://ul/li[contains(text(),'Robot2')]    
+      Page Should Contain Element    xpath://ul/li[contains(text(),'Robot2')]
+      Close Browser   
+      
+*** Test Cases ***
+Delete Contact
+      Open Browser    http://screenplay-contacts.herokuapp.com/    chrome
+      Wait Until Element Is Visible    xpath://ul/li[contains(text(),'Robot1')]    
+      Click Element    xpath://ul/li[contains(text(),'Robot1')]
+      Click Button    xpath://button[text()='Delete'] 
+      Wait Until Page Does Not Contain Element    xpath://ul/li[contains(text(),'Robot1')]    
+      Page Should Not Contain Element    xpath://ul/li[contains(text(),'Robot1')]
+      Close Browser            

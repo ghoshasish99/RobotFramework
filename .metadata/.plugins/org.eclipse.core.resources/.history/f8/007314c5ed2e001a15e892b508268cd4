@@ -1,0 +1,15 @@
+*** Settings ***
+Library     SeleniumLibrary 
+
+
+${URL}       http://screenplay-contacts.herokuapp.com/ 
+
+*** Keywords ***
+
+Go To Contacts Page
+      Open Browser   ${URL}    chrome 
+
+Operation is successful
+    [Arguments]    ${EMPTY}
+      Wait Until Page Contains Element    xpath://ul/li[contains(text(),'${EMPTY}')]    
+      Page Should Contain Element    xpath://ul/li[contains(text(),'${EMPTY}')]

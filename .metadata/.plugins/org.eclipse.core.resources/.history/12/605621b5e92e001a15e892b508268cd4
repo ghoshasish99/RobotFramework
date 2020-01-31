@@ -1,0 +1,5 @@
+__author__ = 'Ashish Ghosh'
+
+&{ContactDetails}   new=xpath://button[text()='New']    create=xpath://button[text()='Create']    delete=xpath://button[text()='Delete']
+
+CreateContacts = {'name':'css:input[name='contact-name']','email':'css:input[name='contact-email']','mobile':'css:input[name='contact-phone-mobile']','workphone':'css:input[name='contact-phone-mobile']'}

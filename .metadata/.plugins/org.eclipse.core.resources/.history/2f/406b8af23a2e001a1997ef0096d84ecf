@@ -1,0 +1,61 @@
+*** Settings ***
+Library     SeleniumLibrary 
+
+*** Variables ***
+@{createContact}    Robot1    Robot@user.com    8989898989898    2020202020202
+@{UpdateContact}    Robot2    Robot@user.com    9898989898989    3030303030303           
+
+*** Keywords ***
+Go To Contacts Page
+      Open Browser    http://screenplay-contacts.herokuapp.com/    chrome   
+    
+Fill up data
+    [Arguments]    @{EMPTY}
+      Input Text      css:input[name='contact-name']    @{EMPTY}[0]          
+      Input Text      css:input[name='contact-email']    @{EMPTY}[1]
+      Input Text      css:input[name='contact-phone-mobile']    @{EMPTY}[2]         
+      Input Text      css:input[name='contact-phone-work']    @{EMPTY}[3] 
+
+Clear data
+      Clear Element Text    css:input[name='contact-name']
+      Clear Element Text    css:input[name='contact-email'] 
+      Clear Element Text    css:input[name='contact-phone-mobile'] 
+      Clear Element Text    css:input[name='contact-phone-work'] 
+
+*** Test Cases ***
+Create Contact
+      Go To Contacts Page
+      Click Button    xpath://button[text()='New']
+      Fill up data    @{createContact}
+      Click Button    xpath://button[text()='Create'] 
+      Wait Until Page Contains Element    xpath://ul/li[contains(text(),'Robot1')]    
+      Page Should Contain Element    xpath://ul/li[contains(text(),'Robot1')]
+      Close Browser  
+      
+*** Test Cases ***
+Update Contact
+      Go To Contacts Page
+      Wait Until Element Is Visible    xpath://ul/li[contains(text(),'Robot1')]    
+      Click Element    xpath://ul/li[contains(text(),'Robot1')]
+      
+      Input Text      css:input[name='contact-name']    Robot2
+               
+      Input Text      css:input[name='contact-email']    Robot@user.com
+      
+      Input Text      css:input[name='contact-phone-mobile']    98989898989898 
+               
+      Input Text      css:input[name='contact-phone-work']    303030303030303
+      Click Button    xpath://button[text()='Update'] 
+      Wait Until Page Contains Element    xpath://ul/li[contains(text(),'Robot2')]    
+      Page Should Contain Element    xpath://ul/li[contains(text(),'Robot2')]
+      Close Browser   
+      
+*** Test Cases ***
+Delete Contact
+      Go To Contacts Page
+      Wait Until Element Is Visible    xpath://ul/li[contains(text(),'Robot1')]    
+      Click Element    xpath://ul/li[contains(text(),'Robot1')]
+      Click Button    xpath://button[text()='Delete'] 
+      Wait Until Page Does Not Contain Element    xpath://ul/li[contains(text(),'Robot1')]    
+      Page Should Not Contain Element    xpath://ul/li[contains(text(),'Robot1')]
+      Close Browser            

@@ -1,0 +1,11 @@
+*** Settings ***
+Library     SeleniumLibrary    
+
+*** Test Cases ***
+Create Contact
+      Open Browser    http://screenplay-contacts.herokuapp.com/    chrome
+      Click Button    xpath://button[text()='New']
+      Input Text      css:input[name='contact-name']    Robot1          
+      Input Text      css:input[name='contact-email']    Robot@user.com
+      Input Text      css:input[name='contact-phone-mobile']    Robot1          
+      Input Text      css:input[name='contact-email']    Robot@user.com        

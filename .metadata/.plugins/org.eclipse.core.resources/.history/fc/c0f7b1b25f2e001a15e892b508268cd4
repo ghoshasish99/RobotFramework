@@ -1,0 +1,7 @@
+*** Settings ***
+Library     SeleniumLibrary 
+
+*** Keywords ***
+
+Go To Contacts Page
+      Open Browser   ${URL}    chrome 

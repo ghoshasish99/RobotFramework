@@ -1,0 +1,7 @@
+*** Settings ***
+Library    SeleniumLibrary   
+
+*** Test Cases ***
+Custom Code Test
+    Open Browser    www.google.com    chrome
+    Maximize Browser Window

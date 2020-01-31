@@ -1,0 +1,7 @@
+class Locator():
+        def __init__(self):
+                ROBOT_LIBRARY_SCOPE = 'GLOBAL'
+
+
+        def ContactToBeOperatedOn(self):
+              return    "Hello World"

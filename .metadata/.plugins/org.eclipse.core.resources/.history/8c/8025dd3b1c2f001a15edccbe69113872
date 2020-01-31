@@ -1,0 +1,35 @@
+*** Settings ***
+Library     SeleniumLibrary
+Library    ../WebElements/Locator.py     
+Variables    ../TestData/Data.py
+Variables    ../WebElements/Contacts.py
+      
+*** Keywords ***
+
+Go To Contacts Page
+      Open Browser   ${URL}    chrome 
+
+Operation is successful
+    [Arguments]    ${nameOfUser}
+      Wait Until Page Contains Element    ${userToBeOperated}    
+      Page Should Contain Element    ${userToBeOperated}
+      
+Fill up data
+    [Arguments]    @{EMPTY}
+      Input Text    &{Contacts}[name]      @{EMPTY}[0]          
+      Input Text    &{Contacts}[email]      @{EMPTY}[1]
+      Input Text    &{Contacts}[mobile]      @{EMPTY}[2]         
+      Input Text    &{Contacts}[workphone]      @{EMPTY}[3] 
+      
+Clear data
+      Clear Element Text    &{Contacts}[name] 
+      Clear Element Text    &{Contacts}[email]
+      Clear Element Text    &{Contacts}[mobile] 
+      Clear Element Text    &{Contacts}[workphone]
+      
+Select User to be operated
+    [Arguments]    ${EMPTY} 
+      ${element} =    Contact To Be Operated On    ${EMPTY}     
+      Wait Until Element Is Visible    ${element}    
+      Click Element    ${userToBeOperated} 
+      

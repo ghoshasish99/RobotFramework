@@ -1,0 +1,29 @@
+*** Settings ***
+Library     SeleniumLibrary    
+
+*** Variables ***
+${URL}       http://screenplay-contacts.herokuapp.com/ 
+&{ContactDetails}    name=css:input[name='contact-name']    email=css:input[name='contact-email']    mobile=css:input[name='contact-phone-mobile']    workphone=css:input[name='contact-phone-work']    new=xpath://button[text()='New']    create=xpath://button[text()='Create']    delete=xpath://button[text()='Delete']
+
+*** Keywords ***
+Go To Contacts Page
+      Open Browser   ${URL}    chrome 
+
+Create a contact
+    [Arguments]    @{EMPTY}
+      Click Button    &{ContactDetails}[new]    
+      Input Text    &{ContactDetails}[name]      @{EMPTY}[0]          
+      Input Text    &{ContactDetails}[email]      @{EMPTY}[1]
+      Input Text    &{ContactDetails}[mobile]      @{EMPTY}[2]         
+      Input Text    &{ContactDetails}[workphone]      @{EMPTY}[3] 
+
+Contact is successfully created
+    [Arguments]    @{EMPTY}
+      
+
+
+Clear data
+      Clear Element Text    &{ContactDetails}[name]
+      Clear Element Text    &{ContactDetails}[email] 
+      Clear Element Text    &{ContactDetails}[mobile] 
+      Clear Element Text    &{ContactDetails}[workphone]

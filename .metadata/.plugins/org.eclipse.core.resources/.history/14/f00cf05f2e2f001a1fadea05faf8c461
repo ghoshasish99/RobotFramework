@@ -1,0 +1,17 @@
+from robot.libraries.BuiltIn import BuiltIn
+from selenium.webdriver.chrome.webdriver import WebDriver
+
+
+class customlibrary():
+
+		def CreateAContact(self):
+			seleniumlib = BuiltIn().get_library_instance('SeleniumLibrary')
+		   # following line returns WebDriver initiated in robot-framework
+			webdriver = seleniumlib.driver
+			webdriver.find_element_by_xpath('/html/body/app-root/div/contact-list/div/div[1]/button').click()
+			webdriver.find_element_by_xpath('//input[@name="contact-name"]').send_keys('Python1')
+			webdriver.find_element_by_xpath('//input[@name="contact-email"]').send_keys('Python@user.com')
+			webdriver.find_element_by_xpath('//input[@name="contact-phone-mobile"]').send_keys('99898989')
+			webdriver.find_element_by_xpath('//input[@name="contact-phone-work"]').send_keys('2020202')
+			
+			

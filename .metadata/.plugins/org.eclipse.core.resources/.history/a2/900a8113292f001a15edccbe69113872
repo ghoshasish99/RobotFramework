@@ -1,0 +1,13 @@
+*** Settings ***
+Library    SeleniumLibrary 
+Library    ../Resources/customlibrary.py 
+         
+
+*** Test Cases ***
+Custom Code Test
+    [Documentation]    This test case is to test custom coding in Python
+    [Tags]    custom
+    Open Browser    https://www.google.com/    chrome
+    Maximize Browser Window
+    Blog
+    

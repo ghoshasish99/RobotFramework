@@ -1,0 +1,7 @@
+__author__ = 'Ashish Ghosh'
+
+class Locator :
+
+	def getUserToBeOperatedOn(self, city):
+		xpath = '//ul/li[contains(text(),/'city/')]'
+		return xpath

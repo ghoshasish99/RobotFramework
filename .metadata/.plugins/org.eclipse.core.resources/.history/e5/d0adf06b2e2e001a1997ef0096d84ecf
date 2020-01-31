@@ -1,0 +1,28 @@
+*** Settings ***
+Library     SeleniumLibrary    
+
+*** Test Cases ***
+Create Contact
+      Open Browser    http://screenplay-contacts.herokuapp.com/    chrome
+      Click Button    xpath://button[text()='New']
+      Input Text      css:input[name='contact-name']    Robot1          
+      Input Text      css:input[name='contact-email']    Robot@user.com
+      Input Text      css:input[name='contact-phone-mobile']    898989898989898          
+      Input Text      css:input[name='contact-phone-work']    202020202020202
+      Click Button    xpath://button[text()='Create'] 
+      Wait Until Page Contains Element    xpath://ul/li[contains(text(),'Robot1')]    
+      Page Should Contain Element    xpath://ul/li[contains(text(),'Robot1')]
+      Close Browser  
+      
+*** Test Cases ***
+Update Contact
+      Open Browser    http://screenplay-contacts.herokuapp.com/    chrome
+      Click Button    xpath://ul/li[contains(text(),'Robot1')]
+      Input Text      css:input[name='contact-name']    Robot1          
+      Input Text      css:input[name='contact-email']    Robot@user.com
+      Input Text      css:input[name='contact-phone-mobile']    898989898989898          
+      Input Text      css:input[name='contact-phone-work']    202020202020202
+      Click Button    xpath://button[text()='Create'] 
+      Wait Until Page Contains Element    xpath://ul/li[contains(text(),'Robot1')]    
+      Page Should Contain Element    xpath://ul/li[contains(text(),'Robot1')]
+      Close Browser             

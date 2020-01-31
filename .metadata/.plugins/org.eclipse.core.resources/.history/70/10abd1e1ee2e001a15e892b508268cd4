@@ -1,0 +1,27 @@
+*** Settings ***
+Library     SeleniumLibrary    
+Variables    ../WebElements/Contacts.py
+Variables    ../TestData/Data.py
+Resource    ../Keywords/Common.robot
+
+*** Keywords ***
+
+Create a contact
+    [Arguments]    @{EMPTY}
+      Click Button    ${newButton}   
+      Fill up data    @{EMPTY}
+
+
+
+
+
+
+
+
+
+Update a contact
+    [Arguments]    @{EMPTY}
+     # 
+      Clear data    
+      Fill up data    @{EMPTY}
+      Click Button    ${updateButton}

@@ -1,0 +1,10 @@
+*** Settings ***
+Library    SeleniumLibrary 
+Library    ../Keywords/customlibrary.py          
+
+*** Test Cases ***
+Custom Code Test
+    Open Browser    www.google.com    chrome
+    Maximize Browser Window
+    
+    
